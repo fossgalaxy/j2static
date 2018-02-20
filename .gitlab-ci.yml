@@ -5,6 +5,7 @@ before_script:
 
 test:
   script:
+  - apk update && apk add --no-cache bash git openssh
   - python setup.py test
   - pip install tox flake8  # you can also use tox
   - tox
