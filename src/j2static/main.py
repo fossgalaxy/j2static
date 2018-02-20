@@ -12,3 +12,6 @@ env = Environment(
 def render(name):
 	template = env.get_template(name)
 	return template.render()
+
+def main():
+    print("test")
