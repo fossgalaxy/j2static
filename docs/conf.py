@@ -164,6 +164,3 @@ texinfo_documents = [
      author, 'j2static', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-

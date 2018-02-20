@@ -6,4 +6,4 @@ recursive-include test *.html
 recursive-include test *.py
 
 exclude .gitlab-ci.yml
-
+prune docs/

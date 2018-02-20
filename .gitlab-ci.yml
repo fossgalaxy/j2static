@@ -23,7 +23,7 @@ run:
 pages:
   script:
   - pip install sphinx sphinx-rtd-theme
-  - cd doc ; make html
+  - cd docs ; make html
   - mv _build/html/ ../public/
   artifacts:
     paths:
