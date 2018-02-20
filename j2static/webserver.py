@@ -6,7 +6,7 @@
 # in real time.
 ##
 
-import main
+import j2static.main
 
 from http.server import BaseHTTPRequestHandler
 import socketserver
@@ -21,11 +21,12 @@ class TemplateHTTPServer(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
 
-        data = main.render('index.html')
+        data = j2static.main.render('index.html')
         self.wfile.write(data.encode())
 
 
-Handler = TemplateHTTPServer
-httpd = socketserver.TCPServer(("", PORT), Handler)
-httpd.serve_forever()
-httpd.close()
+def serve():
+    Handler = TemplateHTTPServer
+    httpd = socketserver.TCPServer(("", PORT), Handler)
+    httpd.serve_forever()
+    httpd.close()

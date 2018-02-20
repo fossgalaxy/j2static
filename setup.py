@@ -32,7 +32,7 @@ setup(
     package_dir={'j2static': 'j2static'},
     entry_points={
         'console_scripts': [
-            'j2static=j2static:main',
+            'j2static=j2static.cli:main',
         ],
     },
 )
