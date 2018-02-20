@@ -29,7 +29,7 @@ setup(
         'Programming Language :: Python :: 3'
     ],
     packages=['j2static', ],
-    package_dir={'j2static': 'src/j2static'},
+    package_dir={'j2static': 'j2static'},
     entry_points={
         'console_scripts': [
             'j2static=j2static:main',
