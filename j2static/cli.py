@@ -1,10 +1,11 @@
 #! /usr/bin/env python3
 
 import argparse
+from j2static.main import generate
 from j2static.webserver import serve
 
 _options = {
-    'generate': lambda: print("generate"),
+    'generate': generate,
     'serve': serve
 }
 
