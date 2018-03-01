@@ -28,11 +28,13 @@ setup(
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python :: 3'
     ],
+    test_suite='tests',
     packages=['j2static', ],
     package_dir={'j2static': 'j2static'},
     entry_points={
         'console_scripts': [
             'j2static=j2static.cli:main',
+            'j2merge=j2static.cli_merge:main'
         ],
     },
 )
