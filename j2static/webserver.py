@@ -6,6 +6,10 @@
 # in real time.
 ##
 
+import pathlib
+import mimetypes
+import shutil
+
 import jinja2
 from j2static.build import get_builder
 
@@ -45,10 +49,21 @@ class TemplateHTTPServer(BaseHTTPRequestHandler):
                 self.end_headers()
 
                 data = "<h1>template error</h1> <p>{e.name}, line {e.lineno}: <samp>{e.message}</samp></p>".format(e=e)
+            self.wfile.write(data.encode())
         else:
-            data = "not valid page"
+            fpath = pathlib.Path(TEMPLATE_DIR) / pathlib.Path(file_path[1:])
+            print(fpath.resolve())
+            if not fpath.exists():
+               self.send_response(404)
+               data = "not valid page"
+            else:
+               mime, enc = mimetypes.guess_type(str(fpath))
+               self.send_response(200)
+               self.send_header('content-type', mime)
+               self.end_headers()
+               with open(fpath, 'rb') as content:
+                   shutil.copyfileobj(content, self.wfile)
 
-        self.wfile.write(data.encode())
 
 
 def serve(args):
