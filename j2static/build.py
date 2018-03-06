@@ -86,14 +86,23 @@ class Latex(BaseGenerator):
         """Make a jinja enviroment object suitable for plain text processing"""
         return jinja2.Environment(
             loader=jinja2.FileSystemLoader(template_dir),
-            autoescape=False
+            block_start_string = '\BLOCK{',
+            block_end_string = '}',
+            variable_start_string = '\VAR{',
+            variable_end_string = '}',
+            comment_start_string = '\#{',
+            comment_end_string = '}',
+            line_statement_prefix = '%%',
+            line_comment_prefix = '%#',
+            trim_blocks = True,
+            autoescape = False
         )
 
 class TexPDF(BaseGenerator):
     """Use latexmk and a tempdir to make PDFs"""
 
-    def __init__(self):
-       self.texgen = Latex()
+    def __init__(self, template_dir='.'):
+       self.texgen = Latex(template_dir=template_dir)
 
     def _get_extentions(self):
         return self.texgen._get_extentions()
