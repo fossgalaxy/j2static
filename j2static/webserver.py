@@ -12,11 +12,13 @@ import shutil
 
 import jinja2
 from j2static.build import get_builder
+from j2static.tools.merge import load_data
 
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 PORT = 8080
 TEMPLATE_DIR = "_templates/"
+DATA_DIR = pathlib.Path("./_data/")
 
 class TemplateHTTPServer(BaseHTTPRequestHandler):
 
@@ -31,7 +33,15 @@ class TemplateHTTPServer(BaseHTTPRequestHandler):
         builder = get_builder("html", TEMPLATE_DIR)
         if builder.filter(file_path):
             try:
-                data = builder.render(file_path)
+                context = []
+
+                template_path = pathlib.Path(file_path[1:])
+                data_file = DATA_DIR / template_path.parent / (template_path.stem + ".json")
+
+                if data_file.exists():
+                    context = load_data(data_file)
+
+                data = builder.render(file_path, context=context)
 
                 self.send_response(200)
                 self.send_header('Content-type', 'text/html')
