@@ -15,7 +15,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='j2static',
-    version='0.1',
+    version='0.2.1',
     description='static templating engine',
     long_description=long_description,
     author='FOSS Galaxy',
@@ -29,7 +29,7 @@ setup(
         'Programming Language :: Python :: 3'
     ],
     test_suite='tests',
-    packages=['j2static', ],
+    packages=['j2static', 'j2static.tools' ],
     package_dir={'j2static': 'j2static'},
     entry_points={
         'console_scripts': [
