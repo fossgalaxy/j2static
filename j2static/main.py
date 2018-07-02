@@ -15,9 +15,9 @@ def find_all(dirpath):
             files.extend( find_all(path) )
     return files
 
-def generate(args, datadir='_data', outdir='site/'):
-    out_path = pathlib.Path(outdir)
-    data_path = pathlib.Path(datadir)
+def generate(args):
+    out_path = pathlib.Path(args.out_dir)
+    data_path = pathlib.Path(args.data_dir)
     template_path = pathlib.Path(args.template_dir)
 
     generator = build.get_builder("html", args.template_dir)
