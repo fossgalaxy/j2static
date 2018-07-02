@@ -53,7 +53,6 @@ class Website(BaseGenerator):
     """ """
 
     def is_template(self, filepath):
-        print(filepath.suffix)
         return filepath.suffix in (".html", ".xhtml", ".xml")
 
     def _mkenv(self, template_dir):
