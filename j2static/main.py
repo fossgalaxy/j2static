@@ -2,6 +2,7 @@
 
 import pathlib
 import shutil
+import jinja2
 
 from j2static import build
 from j2static.tools.merge import load_data
@@ -20,6 +21,10 @@ def generate(args):
     data_path = pathlib.Path(args.data_dir)
     template_path = pathlib.Path(args.template_dir)
 
+    if not template_path.exists():
+        print("could not find template path, are you in the right place?")
+        return
+
     generator = build.get_builder("html", args.template_dir)
 
     for path in find_all(template_path):
@@ -33,7 +38,10 @@ def generate(args):
             if data_file.exists():
                 context = load_data(data_file)
 
-            generator.generate(str(relative_path), out_file, context=context)
+            try:
+                generator.generate(str(relative_path), out_file, context=context)
+            except jinja2.TemplateSyntaxError as e:
+                print( "Build Error: {e.name}, line: {e.lineno} - {e.message}".format(e=e) )
         elif path.is_file() and relative_path.name[0] != '_':
             out_file.parent.mkdir(exist_ok=True, parents=True)
             shutil.copy(path, out_file)
