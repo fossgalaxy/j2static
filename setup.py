@@ -15,7 +15,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='j2static',
-    version='0.2.1',
+    version='0.2.2',
     description='static templating engine',
     long_description=long_description,
     author='FOSS Galaxy',
