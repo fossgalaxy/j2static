@@ -1,9 +1,7 @@
 j2merge
 ====================================
 
-j2merge is a command line utilty that ships with j2static. It is a system for
- generating a set of documents from a template and a set of source data ('mail
-merge').
+j2merge is a command line utilty that ships with j2static. It is a system for generating a set of documents from a template and a set of source data ('mail merge').
 
 Using the tool
 --------------

@@ -10,7 +10,8 @@ Welcome to j2static's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   merge.rst
+   generate.rst
 
 Indices and tables
 ==================
