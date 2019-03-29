@@ -1,3 +1,6 @@
+v0.2.3 - 2019-03-29
+* [FIX] generate did not handle subdirectories for data correctly. (Issue #7)
+
 v0.2.2 - 2018-06-2
 * Provide pretty errors when building, rather crashing
 * [FIX] Ensure that arguments passed in on the command line are respected
