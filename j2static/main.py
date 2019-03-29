@@ -4,6 +4,8 @@ import pathlib
 import shutil
 import jinja2
 
+import logging
+
 from j2static import build
 from j2static.tools.merge import load_data
 
@@ -34,9 +36,12 @@ def generate(args):
         if generator.filter(path):
             context = []
 
-            data_file = data_path / (relative_path.stem + ".json")
+            data_file = data_path / relative_path.parent / (relative_path.stem + ".json")
+
             if data_file.exists():
                 context = load_data(data_file)
+            else:
+                logging.info("data file not found %s", data_file)
 
             try:
                 generator.generate(str(relative_path), out_file, context=context)
