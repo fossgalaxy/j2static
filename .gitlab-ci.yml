@@ -20,6 +20,13 @@ run:
     paths:
     - dist/*.whl
 
+deploy:
+  script:
+  - pip install --user twine
+  - ./setup.py
+  only:
+    - tags
+
 pages:
   script:
   - apk update && apk add --no-cache make
